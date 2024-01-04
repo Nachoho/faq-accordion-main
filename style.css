@@ -1,0 +1,165 @@
+:root{
+    --clr-100: hsl(0, 0%, 100%);
+    --clr-200: hsl(275, 100%, 97%);
+    --clr-600: hsl(292, 16%, 49%);
+    --clr-800: hsl(292, 42%, 14%);
+
+    --fw-light: 400;
+    --fw-regular: 600;
+    --fw-bold: 700;
+
+    --fs: 1rem;
+}
+/* 
+1. Use a more intuitive box sizing model.
+*/
+*,
+*::before, 
+*::after{
+    box-sizing: border-box;
+}
+
+/*
+ 2. Remove default margin
+*/
+*{
+    margin: 0;
+}
+
+/*
+ Typographic tweaks!
+ 3. Add accessible line-height
+ 4. Improve text rendering
+*/
+body{
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+ 5. Improve media defaults
+*/
+img, 
+picture, 
+video, 
+canvas, 
+svg{
+    display: block;
+    max-width: 100%;
+}
+
+/*
+ 6. Remove built in form typography styles
+*/
+input,  
+textarea, 
+select{
+    font: inherit;
+}
+
+/* 
+ 7. Avoid text overflow
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5, 
+h6{
+    overflow-wrap: break-word;
+}
+
+h1,h2,h3{
+    line-height: 1;
+}
+
+/* styling */
+
+body{
+    display: grid;
+    min-height: 100vh;
+    place-content: center;
+    margin: auto;
+    background-color: var(--clr-200);
+    color: var(--clr-800);
+}
+
+.background_img{
+    position: relative;
+    z-index: -1;
+}
+
+.container{
+    display: grid;
+    background-color: var(--clr-100);
+    border-radius: 0.5rem;
+    max-width: 600px;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.title{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 0.5rem ;
+
+    text-decoration: none;
+    font-weight: var(--fw-bold);
+}
+
+.title_icon{
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.accordion *{
+    margin: 0;
+}
+
+.trigger{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: fit-content;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+
+    background: transparent;
+    border: 0;
+    text-decoration: none;
+    font-weight: var(--fw-regular);
+}
+
+.icon{
+    max-height: 30px;
+    max-width: 30px;
+}
+
+.accordion{
+    --button-size: 1rem;
+    --_panel-padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    
+}
+
+.accodion-panel{
+    font-size: var(--fs);
+    color: var(--clr-600);
+    position: relative;
+    isolation: isolate;
+
+    flex-basis: calc((var(--_panel-padding)) * 2 + var(--button-size));
+    overflow: hidden;
+    padding: var(--_panel-padding);
+}
+
+.accodion-panel:has([aria-expanded="true"]){
+    flex-basis: clamp(8rem, 4vh, -2rem)
+}

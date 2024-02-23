@@ -1,25 +1,17 @@
-const accordion = document.querySelector(".accordion");
+var acc = document.getElementsByClassName("accordion");
+var i;
 
-accordion.addEventListener('click', (e) => {
-    const activePanel = e.target.closest('.accordion-panel');
-    if (!activePanel) return;
-    toggleAccordion(activePanel);
-    console.log(activePanel);
-});
-
-function toggleAccordion(panelToActivate) {
-    const buttons = panelToActivate.parentElement.querySelectorAll("button");
-    const contents= panelToActivate.parentElement.querySelectorAll('.accordion-content');
-
-    buttons.forEach((button) => {
-        button.setAttribute("aria-expanded", false);
+for(i = 0; i< acc.length; i++){
+    acc[i].addEventListener("click", function(){
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block"){
+            panel.style.display = "none"
+        }else{panel.style.display = "block";}
+        if(panel.style.maxHeight){
+            panel.style.maxHeight = null
+        }else{
+            panel.style.maxHeight = panel.scrollHeight + "px";
+        }
     });
-
-    buttons.forEach((content) => {
-        button.setAttribute("aria-expanded", true);
-    });
-
-    panelToActivate.querySelector('button').setAttribute('aria-expeanded', true);
-    panelToActivate.querySelector('content').setAttribute('aria-expeanded', false);
 }
-

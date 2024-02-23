@@ -78,88 +78,109 @@ h1,h2,h3{
 
 body{
     display: grid;
-    min-height: 100vh;
-    place-content: center;
-    margin: auto;
+    justify-items: center;
+    grid-template-columns: subgrid;
     background-color: var(--clr-200);
-    color: var(--clr-800);
 }
 
-.background_img{
-    position: relative;
+.bg{
     z-index: -1;
 }
 
-.container{
-    display: grid;
+
+.mobile{
+    display: none;
+}
+
+.faq{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
     background-color: var(--clr-100);
-    border-radius: 0.5rem;
-    max-width: 600px;
-    padding: 1rem;
-    margin: 1rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 1rem;
+    gap: 2rem;
+   
 }
 
 .title{
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-    padding-left: 0.5rem ;
-
-    text-decoration: none;
-    font-weight: var(--fw-bold);
-}
-
-.title_icon{
-    max-width: 40px;
-    max-height: 40px;
-}
-
-.accordion *{
-    margin: 0;
-}
-
-.trigger{
-    cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: center;
-    max-width: fit-content;
-    margin: 0;
-    padding: 0;
-    gap: 2rem;
+    gap: 1rem;
 
-    background: transparent;
-    border: 0;
+    color: var(--clr-800);
+    font-size: 1.5rem;
     text-decoration: none;
-    font-weight: var(--fw-regular);
-}
-
-.icon{
-    max-height: 30px;
-    max-width: 30px;
 }
 
 .accordion{
-    --button-size: 1rem;
-    --_panel-padding: 0.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    
-}
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 
-.accodion-panel{
+    background-color: transparent;
+    color: var(--clr-800);
+    cursor: pointer;
+
+    padding: 0;
+    width: 100%;
+
+    text-align: left;
+    font-weight: var(--fw-bold);
     font-size: var(--fs);
-    color: var(--clr-600);
-    position: relative;
-    isolation: isolate;
 
-    flex-basis: calc((var(--_panel-padding)) * 2 + var(--button-size));
-    overflow: hidden;
-    padding: var(--_panel-padding);
+    border: none;
+    outline: none;
+    transition: 400ms;
 }
 
-.accodion-panel:has([aria-expanded="true"]){
-    flex-basis: clamp(8rem, 4vh, -2rem)
+.active,
+.accordion:hover{
+    color: var(--clr-600);
+}
+
+.panel{
+    color: var(--clr-600);
+    
+    font-weight: var(--fw-light);
+    font-size: var(--fs);
+
+    
+
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 200ms ease-in;
+}
+
+.accordion::after{
+    content: "";
+    background-image: url(assets/images/icon-plus.svg);
+    float: right;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    transition: ease 200ms;
+}
+
+.active::after{
+    content: "";
+    background-image: url(assets/images/icon-minus.svg);
+    transition: ease 200ms;
+}
+
+@media(max-width: 385px){
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
 }
